@@ -57,13 +57,14 @@ public class DoctorsController : AppController
             throw new ValidationException($"No se encontró un médico activo con el ID {id}");
         }
 
-
-        return Ok(new
+        var DoctorById = new
         {
-            doctor.Name,
-            doctor.LicenseNumber,
+            Name = doctor.Name,
+            LicenseNumber = doctor.LicenseNumber,
             SpecialityName = doctor.Speciality?.Name ?? "Sin especialidad"
-        });
+        };
+
+        return Ok(DoctorById);  
     }
     [HttpDelete("doctors/{id}")]
     public async Task<IActionResult> DeleteDoctor(Guid id)

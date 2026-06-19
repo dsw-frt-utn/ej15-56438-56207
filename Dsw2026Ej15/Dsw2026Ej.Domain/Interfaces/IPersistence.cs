@@ -11,7 +11,6 @@ namespace Dsw2026Ej15.Domain.Interfaces
         void SaveDoctor(Doctor doctor);
         List<Doctor> GetAllDoctors();
         Doctor? GetDoctorById(Guid id);
-
         void ToggleDoctorActive(Guid id);
     }
 }

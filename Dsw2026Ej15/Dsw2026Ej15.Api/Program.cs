@@ -1,7 +1,7 @@
 
 using Dsw2026Ej15.Data;
 using Dsw2026Ej15.Domain.Interfaces;
-
+using Dsw2026Ej15.Api.Middleware;
 namespace Dsw2026Ej15.Api
 {
     public class Program
@@ -14,25 +14,24 @@ namespace Dsw2026Ej15.Api
 
             builder.Services.AddControllers();
             builder.Services.AddSwaggerGen();
-            //         builder.Services.AddHealthChecks();
+            builder.Services.AddHealthChecks();
             builder.Services.AddSingleton<IPersistence, PersistenceInMemory>();
-            //registrar la persistencia como singleton, es decir, se crea una única instancia de PersistenceInMemory que se comparte en toda la aplicación. Esto es útil para mantener el estado en memoria durante la ejecución de la aplicación.
+
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
             {
                 app.UseSwagger();
-                //app.MapOpenApi();
+          
                 app.UseSwaggerUI();
             }
 
-
-            //            app.UseMiddleware<ExceptionHandlingMiddleware>();
+            app.UseMiddleware<ExceptionHandlingMiddleware>();
             app.UseAuthorization();
 
             app.MapControllers();
-            //          app.MapHealthChecks("/health-check");
+            app.MapHealthChecks("/health-check");
             app.Run();
         }
     }

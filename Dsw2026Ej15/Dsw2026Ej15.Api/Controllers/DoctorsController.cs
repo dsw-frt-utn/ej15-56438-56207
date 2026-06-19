@@ -25,7 +25,7 @@ public class DoctorsController : AppController
         }
 
         var speciality = _persistence.GetSpecialityById(request.SpecializationId);
-        if(speciality is null)
+        if (speciality is null)
         {
             throw new ValidationException("Especialidad no encontrada");
         }
@@ -48,16 +48,16 @@ public class DoctorsController : AppController
     [HttpGet("doctors/{id}")]
     public async Task<IActionResult> GetDoctorById(Guid id)
     {
-       
+
         var doctor = _persistence.GetDoctorById(id);
 
-        
+
         if (doctor is null || !doctor.IsActive)
         {
             throw new ValidationException($"No se encontró un médico activo con el ID {id}");
         }
 
-        
+
         return Ok(new
         {
             doctor.Name,
@@ -79,8 +79,4 @@ public class DoctorsController : AppController
 
         return NoContent();
     }
-
-
-
-
 }

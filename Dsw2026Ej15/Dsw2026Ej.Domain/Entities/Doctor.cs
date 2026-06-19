@@ -13,14 +13,12 @@ namespace Dsw2026Ej15.Domain.Entities
        
         public bool IsActive { get; private set; }
         
-        public Doctor(string name, string licenseNumber, Speciality speciality, Guid? id) : base(id)
+        public Doctor(string name, string licenseNumber, Speciality speciality)
         {
             Name = name; 
             LicenseNumber = licenseNumber;
-            
             Speciality = speciality;
             IsActive = true;
         }
-        
     }
 }

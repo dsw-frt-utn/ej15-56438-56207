@@ -33,8 +33,6 @@ namespace Dsw2026Ej15.Api
 
             app.MapControllers();
             //          app.MapHealthChecks("/health-check");
-            //saber si esta funcionando o no la aplicación,
-            //se puede acceder a esta ruta para verificar el estado de salud de la aplicación.
             app.Run();
         }
     }

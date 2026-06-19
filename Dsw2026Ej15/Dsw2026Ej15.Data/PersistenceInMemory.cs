@@ -19,6 +19,16 @@ namespace Dsw2026Ej15.Data
             LoadSpecialities();
         }
 
+        public Speciality? GetSpecialityById(Guid id)
+        {
+            return _specialities.FirstOrDefault(s => s.Id == id);
+        }
+
+        public void SaveDoctor(Doctor doctor)
+        {
+            _doctors.Add(doctor);
+        }
+
         private void LoadSpecialities()
         {
             try

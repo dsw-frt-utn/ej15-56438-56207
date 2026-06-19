@@ -2,9 +2,14 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Dsw2026Ej.Domain.Entities
+namespace Dsw2026Ej15.Domain.Entities
 {
-    internal class BaseEntity
+    public abstract class BaseEntity
     {
+        public Guid Id { get; }
+        protected BaseEntity(Guid? id = null)
+        {
+            Id = id ?? Guid.NewGuid();
+        }
     }
 }

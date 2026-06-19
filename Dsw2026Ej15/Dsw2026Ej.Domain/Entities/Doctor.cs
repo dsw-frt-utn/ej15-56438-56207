@@ -1,10 +1,26 @@
-﻿using System;
+﻿using Dsw2026Ej15.Domain.Entities;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Dsw2026Ej.Domain.Entities
+namespace Dsw2026Ej15.Domain.Entities
 {
-    internal class Doctor
+    public class Doctor : BaseEntity
     {
+        public string Name { get; init; }
+        public string LicenseNumber { get; init; }
+        public Speciality? Speciality { get; private set; }
+       
+        public bool IsActive { get; private set; }
+        
+        public Doctor(string name, string licenseNumber, Speciality speciality, Guid? id) : base(id)
+        {
+            Name = name; 
+            LicenseNumber = licenseNumber;
+            
+            Speciality = speciality;
+            IsActive = true;
+        }
+        
     }
 }

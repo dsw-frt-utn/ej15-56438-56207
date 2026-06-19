@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Dsw2026Ej15.Domain.Entities;
 
-namespace Dsw2026Ej.Domain.Interfaces
+namespace Dsw2026Ej15.Domain.Interfaces
 {
-    internal class IPersistence
+    public interface IPersistence
     {
     }
 }

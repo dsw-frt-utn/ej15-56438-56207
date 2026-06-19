@@ -28,6 +28,14 @@ namespace Dsw2026Ej15.Data
         {
             _doctors.Add(doctor);
         }
+        public List<Doctor> GetAllDoctors()
+        {
+            foreach (var doctor in _doctors)
+            {
+                doctor.Speciality = GetSpecialityById(doctor.SpecialityId);
+            }
+            return _doctors.ToList();
+        }
 
         private void LoadSpecialities()
         {

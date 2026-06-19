@@ -34,4 +34,15 @@ public class DoctorsController : AppController
 
         return Created();
     }
+
+    [HttpGet("doctors")]
+    public async Task<IActionResult> GetAllDoctors()
+    {
+        var doctors = _persistence.GetAllDoctors();
+
+        var activeDoctors = doctors.Where(d => d.IsActive).ToList();
+
+        return Ok(activeDoctors);
+    }
+
 }

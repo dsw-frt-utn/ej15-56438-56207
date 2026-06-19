@@ -45,4 +45,42 @@ public class DoctorsController : AppController
         return Ok(activeDoctors);
     }
 
+    [HttpGet("doctors/{id}")]
+    public async Task<IActionResult> GetDoctorById(Guid id)
+    {
+       
+        var doctor = _persistence.GetDoctorById(id);
+
+        
+        if (doctor is null || !doctor.IsActive)
+        {
+            throw new ValidationException($"No se encontró un médico activo con el ID {id}");
+        }
+
+        
+        return Ok(new
+        {
+            doctor.Name,
+            doctor.LicenseNumber,
+            SpecialityName = doctor.Speciality?.Name ?? "Sin especialidad"
+        });
+    }
+    [HttpDelete("doctors/{id}")]
+    public async Task<IActionResult> DeleteDoctor(Guid id)
+    {
+        var doctor = _persistence.GetDoctorById(id);
+
+        if (doctor is null || !doctor.IsActive)
+        {
+            throw new ValidationException($"No se encontró un médico activo con el ID {id}");
+        }
+
+        _persistence.ToggleDoctorActive(id);
+
+        return NoContent();
+    }
+
+
+
+
 }

@@ -37,6 +37,15 @@ namespace Dsw2026Ej15.Data
             return _doctors.ToList();
         }
 
+        public Doctor? GetDoctorById(Guid id)
+        {
+            var doctor = _doctors.FirstOrDefault(d => d.Id == id);
+            if (doctor != null)
+            {
+                doctor.Speciality = GetSpecialityById(doctor.SpecialityId);
+            }
+            return doctor;
+        }
         private void LoadSpecialities()
         {
             try
@@ -54,6 +63,14 @@ namespace Dsw2026Ej15.Data
             }
             catch (Exception)
             {
+            }
+        }
+        public void ToggleDoctorActive(Guid id)
+        {
+            var doctor = GetDoctorById(id);
+            if (doctor != null)
+            {
+                doctor.IsActive = !doctor.IsActive;
             }
         }
     }
